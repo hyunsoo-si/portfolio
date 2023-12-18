@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyunsoo Si Portfolio</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        
+    </style>
+</head>
+
+<body>
+    <div class="image-container">
+        <img id="stretchableImage" src="data/header2.svg" alt="logo" width: 100px;>
+      </div>
+<div class="page">
+    <div class="header">
+        <img class="headerimg1" src="data/header1.png" alt="logo" style="width: 100%;">
+        
+        
+    </div>
+
+    <div id="imageSlider" class="slider">
+        <div class="slide" style="background-image: url('data/elephantsong2.jpg'); "></div>
+        <div class="slide" style="background-image: url('data/elephantsong5.jpg'); "></div>
+        <div class="slide" style="background-image: url('data/elephantsong4.jpg'); "></div>
+        <div class="slide" style="background-image: url('data/elephantsong3.jpg'); "></div>
+        <div class="slide" style="background-image: url('data/elephantsong6.jpg'); "></div>
+        <!-- Add more slides as needed -->
+    </div>
+
+    
+    <div class="cover_container">
+        <div id="downArrow" class="arrow" style="display:none;" >⤥ ⤦</div>
+        <img id="cover" src="data/candy.png" width:100%; >
+    </div>
+   
+    <div id="video_container">
+        <video id="video_content" controls loop autoplay playsinline >
+            <source src="data/elephantsong.MP4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+    </div>
+
+
+    <div id="mySidenav" class="sidenav">
+        <div id="navContent">
+            <a href="portfolio.html">elephant song</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+            <a href="#">Link 4</a>
+        </div>
+    </div>
+    
+    <div id="navToggle" style=" cursor:pointer" onclick="toggleNav(); moveButton()">&#128269; &#128283;</div>
+    
+
+
+ <div class="bottom-text">
+    <div class="nameofContent">
+        <p style="margin-top:0;"> Elephant Song - 2019. 03. 07 ~ 03. 09 <br>
+            <br>
+            Sogang University 68th regular play<br>
+            Original Arthour: Nicolas Billon<br>
+        </p>
+            
+    </div>
+
+
+
+    <div class="text3">
+        <div id="textContent">
+            <p style="margin-top:0;"> The main concept of the stage was the <span>interaction with the lights</span>  and dividing unconsciousness and conscious reality vertically.
+                <br>
+                I believe stage design is the main bone of everything. Well made stage design gives stable ground for the performance to grow. 
+            </p>
+        </div>
+    </div>
+
+    <div class="credit2">
+        <div id="creditToggle" onclick="toggleCredit()">Credit <span>(click!)</span></div>
+        <div id="creditContent">
+        <!-- Place your credit content here -->
+        <p>Stage Production & Stage Design: Hyun-Soo. Si, Jun-Hee. Lee, Minyoung. Park, Su-Hwan. Kim, Kun-Hwi. Lee, Myeong-Ju. Lee <br>
+            Costume: Seung-Eun. Oh<br>
+            <br>
+            Music: Gerda<br>
+            Sound: Jun. Park<br>
+            <br>
+            Director: Nam-Hee. Gong<br>
+            Supporting Director: Eun-Ji. Moon<br>
+            Play Planner: Jieun. Kim...</p>
+        </div>
+    </div>
+    
+</div>
+
+
+<div id="popupContainer" class="popup-container">
+    <span class="close-btn" onclick="closeImage()">&times;</span>
+    <img src="data/bestteamtemplate.png" alt="Best team"/>
+</div>    
+
+    <div class="footer">
+
+
+    </div>
+</div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+    let slides = document.querySelectorAll('.slider .slide');
+    let currentSlide = 1;
+
+    function moveToSlide(n) {
+        slides[currentSlide].className = 'slide prev';
+        currentSlide = (n + slides.length) % slides.length;
+        slides[currentSlide].className = 'slide active';
+        slides[(currentSlide + 1)].className='slide next';
+    }
+
+    function nextSlide() {
+        
+        moveToSlide(currentSlide + 1);
+    }
+
+    function previousSlide() {
+        moveToSlide(currentSlide - 1);
+    }
+
+    document.querySelector('.slider').addEventListener('click', function(event) {
+        if (event.clientX < this.offsetWidth / 2) {
+            previousSlide();
+        } else {
+            nextSlide();
+        }
+    });
+
+    // Initialize first slide
+    moveToSlide(0);
+});
+
+function scaleImage() {
+    var img = document.getElementById('stretchableImage');
+    var viewportWidth = window.innerWidth; // Gets the width of the viewport
+    var naturalWidth = 1000;
+
+    var scaleFactor = viewportWidth / naturalWidth;
+    img.style.transform = 'scaleX(' + scaleFactor + ')';
+}
+
+// Apply the scale on window load and resize
+window.onload = scaleImage;
+window.onresize = scaleImage;
+
+// cover function
+
+document.getElementById('cover').addEventListener('click', function() {
+    this.style.bottom = '100%'; // Slide the image up
+    document.getElementById('downArrow').style.display = 'block';
+});
+
+document.getElementById('downArrow').addEventListener('click', function() {
+    var image = document.getElementById('cover');
+
+    this.style.display = 'none'; // Hide the arrow
+    image.style.bottom = '0'; // Slide the image back into view
+   
+});
+
+//navigation js script 
+function toggleNav() {
+    var nav = document.getElementById("mySidenav");
+    if (nav.style.width === "250px") {
+        nav.style.width = "0";
+    } else {
+        nav.style.width = "250px";
+    }
+}
+
+var moved = false;
+
+    function moveButton() {
+        var button = document.getElementById("navToggle");
+        if (moved) {
+            button.style.right = '15px';
+        } else {
+            button.style.right = '265px';
+        }
+        moved = !moved;
+    }
+
+    //close popup function
+    function closeImage() {
+    document.getElementById('popupContainer').style.display = 'none';
+}
+
+    //credit toggle button
+function toggleCredit() {
+            var content = document.getElementById("creditContent");
+            if (content.style.display === "none") {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        }
+
+    </script>
+
+
+
+</body>
+
+</html>
